@@ -41,7 +41,7 @@ class Square:
         if type(value) is not int:
             raise TypeError("size must be an integer")
         elif value < 0:
-                raise ValueError("size must be >= 0")
+            raise ValueError("size must be >= 0")
         else:
             self.__size = value
 
@@ -53,7 +53,7 @@ class Square:
                 type(value[0]) is not int or
                 type(value[1]) is not int or
                 value[0] < 0 or value[1] < 0):
-                raise TypeError(str)
+            raise TypeError(str)
         else:
             self.__position = value
 
