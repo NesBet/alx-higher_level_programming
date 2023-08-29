@@ -1,7 +1,9 @@
 #!/usr/bin/python3
+"""The summary line for a class docstring should fit on one line.
 
-
-"""The summary line for a class docstring should fit on one line."""
+    Attributes:
+        attr1 (str): Attribute description.
+    """
 
 
 class Square:
