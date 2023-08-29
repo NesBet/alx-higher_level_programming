@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-"""Creates class Square with
+"""creates class Square with
 private instance attribute size and public instance method."""
 
 
 class Square:
-    """Defines class with instantiated and validated private instance attribute
+    """defines class with instantiated and validated private instance attribute
 and public instance method."""
 
     def __init__(self, size=0):
@@ -15,5 +15,5 @@ and public instance method."""
         self.__size = size
 
     def area(self):
-        """Calculates and returns square area."""
+        """calculates and returns square area."""
         return(self.__size * self.__size)
