@@ -1,57 +1,78 @@
 #!/usr/bin/python3
+"""creates class Node to define linked list node & class SinglyLinkedList"""
+
+
 class Node:
+    """defines class for singly linked list node"""
+
     def __init__(self, data, next_node=None):
         self.data = data
         self.next_node = next_node
 
     @property
     def data(self):
-        return self.__data
+        """ getter for data attribute"""
+        return(self.__data)
 
     @data.setter
     def data(self, value):
-        if not isinstance(value, int):
+        """setter for data attribute"""
+        if type(value) is not int:
             raise TypeError("data must be an integer")
-        self.__data = value
+        else:
+            self.__data = value
 
     @property
     def next_node(self):
-        return self.__next_node
+        """ getter for next_node attribute"""
+        return(self.__next_node)
 
     @next_node.setter
     def next_node(self, value):
-        if not isinstance(value, Node) and value is not None:
+        """setter for next_node attribute"""
+        if value is not None and not isinstance(value, Node):
             raise TypeError("next_node must be a Node object")
-        self.__next_node = value
+        else:
+            self.__next_node = value
 
 
 class SinglyLinkedList:
-    def __str__(self):
-        rtn = ""
-        ptr = self.__head
-
-        while ptr is not None:
-            rtn += str(ptr.data)
-            if ptr.next_node is not None:
-                rtn += "\n"
-            ptr = ptr.next_node
-
-        return rtn
+    """defines class for singly linked list"""
 
     def __init__(self):
         self.__head = None
 
     def sorted_insert(self, value):
-        ptr = self.__head
-
-        while ptr is not None:
-            if ptr.data > value:
-                break
-            ptr_prev = ptr
-            ptr = ptr.next_node
-
-        newNode = Node(value, ptr)
-        if ptr == self.__head:
-            self.__head = newNode
+        """insert new node"""
+        new_node = Node(value)
+        if self.__head is None:
+            self.__head = new_node
         else:
-            ptr_prev.next_node = newNode
+            tmp = self.__head
+            if tmp.data > new_node.data:
+                new_node.next_node = tmp
+                self.__head = new_node
+                return
+            while tmp.next_node is not None:
+                tmp2 = tmp.next_node
+                if tmp2.data < new_node.data:
+                    tmp = tmp2
+                else:
+                    new_node.next_node = tmp.next_node
+                    tmp.next_node = new_node
+                    return
+            tmp.next_node = new_node
+
+    def stringrep(self):
+        strrep = ""
+        tmp = self.__head
+        while tmp is not None:
+            datavalue = tmp.data
+            strrep = strrep + str(datavalue)
+            tmp = tmp.next_node
+            if tmp:
+                strrep = strrep + "\n"
+        return strrep
+
+    def __repr__(self):
+        return(self.stringrep())
