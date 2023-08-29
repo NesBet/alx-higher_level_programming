@@ -1,26 +1,35 @@
 #!/usr/bin/python3
-"""creates class Square with
-private instance attribute size and position and
-public instance methods to calculate area and print square"""
+"""
+Creates a class Square with private instance attributes size and position,
+and public instance methods to calculate area and print square.
+"""
 
 
 class Square:
-    """defines class with private instance attributes size and position
-and public instance methods to calculate area and print square."""
+    """
+    Defines a class with private instance attributes size and position,
+    and public instance methods to calculate area and print square.
+    """
 
     def __init__(self, size=0, position=(0, 0)):
-        """instantiates attribute size to 0 and position to (0, 0)"""
+        """
+        Initializes attributes size and position.
+
+        Args:
+            size (int): The size of the square's side.
+            position (tuple): The position of the square.
+        """
         self.size = size
         self.position = position
 
     @property
     def size(self):
-        """get the private instance attribute size"""
-        return(self.__size)
+        """Gets the private instance attribute size."""
+        return self.__size
 
     @size.setter
     def size(self, value):
-        """sets the private instance attribute size"""
+        """Sets the private instance attribute size."""
         if type(value) is not int:
             raise TypeError("size must be an integer")
         elif value < 0:
@@ -30,61 +39,58 @@ and public instance methods to calculate area and print square."""
 
     @property
     def position(self):
-        """gets the private instance attribute position"""
-        return(self.__position)
+        """Gets the private instance attribute position."""
+        return self.__position
 
     @position.setter
     def position(self, value):
-        """sets the private instance attribute position"""
-        check = 0
-        while 1:
-            if type(value) is not tuple or len(value) is not 2:
-                check += 1
-                break
-            if type(value[0]) is not int or type(value[1]) is not int:
-                check += 1
-                break
-            if value[0] < 0 or value[1] < 0:
-                check += 1
-            break
-        if check is 0:
-            self.__position = value
-        else:
+        """Sets the private instance attribute position."""
+        if (
+            type(value) is not tuple
+            or len(value) != 2
+            or type(value[0]) is not int
+            or type(value[1]) is not int
+            or value[0] < 0
+            or value[1] < 0
+        ):
             raise TypeError("position must be a tuple of 2 positive integers")
+        else:
+            self.__position = value
 
     def area(self):
-        """calculates and returns current square area"""
-        return(self.__size * self.__size)
+        """Calculates and returns the current square area."""
+        return self.__size * self.__size
 
     def my_print(self):
-        """prints square of size self.__size using #"""
+        """Prints a square of size self.__size using '#'."""
         if self.__size > 0:
             for y in range(self.__position[1]):
                 print()
-            for column in range(self.__size):
+            for _ in range(self.__size):
                 for x in range(self.__position[0]):
                     print(" ", end="")
-                for row in range(self.__size):
+                for _ in range(self.__size):
                     print("#", end="")
                 print()
         else:
             print()
 
     def my_print_string(self):
-        """formats returnable string like my_print"""
+        """Formats a returnable string like my_print."""
         square_string = ""
         if self.__size > 0:
             for y in range(self.__position[1]):
-                square_string = square_string + "\n"
-            for row in range(self.__size):
+                square_string += "\n"
+            for _ in range(self.__size):
                 for x in range(self.__position[0]):
-                    square_string = square_string + " "
-                for column in range(self.__size):
-                    square_string = square_string + "#"
-                if row is not (self.__size - 1):
-                    square_string = square_string + "\n"
+                    square_string += " "
+                for _ in range(self.__size):
+                    square_string += "#"
+                if y != (self.__size - 1):
+                    square_string += "\n"
         return square_string
 
     def __repr__(self):
-        """returns square representation as a string"""
-        return (self.my_print_string())
+        """Returns the square representation as a string."""
+        return self.my_print_string()
+
