@@ -1,37 +1,44 @@
 #!/usr/bin/python3
-"""creates class Square with
-private instance attribute size and public instance method"""
+"""Compulsary Google style docstrings."""
 
 
 class Square:
-    """defines class with instantiated and validated private instance attribute
-and public instance method."""
+    """The summary line for a class docstring should fit on one line."""
 
     def __init__(self, size=0):
-        self.__size = size
+        """The summary line for a class docstring should fit on one line."""
+        self.size = size
+
+    def area(self):
+        """The summary line for a class docstring should fit on one line."""
+        return (self._size * self._size)
 
     @property
     def size(self):
-        return(self.__size)
+        """The summary line for a class docstring should fit on one line."""
+        return self._size
 
     @size.setter
     def size(self, value):
-        if type(value) is not int:
+        """The summary line for a class docstring should fit on one line."""
+        if type(value) == int:
+            if value >= 0:
+                self._size = value
+            else:
+                raise ValueError("size must be >= 0")
+        else:
             raise TypeError("size must be an integer")
-        elif value < 0:
-            raise ValueError("size must be >= 0")
-        self.__size = value
-
-    def area(self):
-        """calculates and returns current square area"""
-        return(self.__size * self.__size)
 
     def my_print(self):
-        """prints square of size self.__size using #"""
-        if self.__size > 0:
-            for column in range(self.__size):
-                for row in range(self.__size):
-                    print("#", end="")
-                print()
-        else:
+        """The summary line for a class docstring should fit on one line."""
+        i, j = 0, 0
+        if self._size == 0:
             print()
+        else:
+            while i < self._size:
+                while j < self._size:
+                    print("#", end="")
+                    j += 1
+                print()
+                j = 0
+                i += 1
