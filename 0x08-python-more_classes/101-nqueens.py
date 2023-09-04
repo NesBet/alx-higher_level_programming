@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """
 
-Module contains an algorithm that resolves the N-Queen puzzle
-using backtracking procedure
+This module contains an algorithm that resolves the N-Queen puzzle
+using backtracking
 
 """
 
@@ -57,19 +57,19 @@ def Queen(m_queen, nqueen):
 
     """
 
-    if nqueen is len(m_queen):
+    if nqueen == len(m_queen):  # Changed "is" to "=="
         print_result(m_queen, nqueen)
         return
 
     m_queen[nqueen] = -1
 
-    while((m_queen[nqueen] < len(m_queen) - 1)):
+    while m_queen[nqueen] < len(m_queen) - 1:
 
         m_queen[nqueen] += 1
 
         if isSafe(m_queen, nqueen) is True:
 
-            if nqueen is not len(m_queen):
+            if nqueen != len(m_queen):  # Changed "is not" to "!="
                 Queen(m_queen, nqueen + 1)
 
 
@@ -96,7 +96,7 @@ if __name__ == '__main__':
 
     try:
         size = int(sys.argv[1])
-    except:
+    except ValueError:  # Catch ValueError for non-integer input
         print("N must be a number")
         sys.exit(1)
 
