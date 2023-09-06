@@ -1,13 +1,16 @@
 #!/usr/bin/python3
 """
 
-Module containts a class that avoids
-dynmaically created attributes.
+This class has been locked
 
 """
 
 
 class LockedClass:
+    """
+    Prevents the user from dynamically creating new instance attributes,
+    except if the new instance attribute is called first_name
+    """
     def __setattr__(self, name, value):
         if name == 'first_name':
             self.__dict__[name] = value
