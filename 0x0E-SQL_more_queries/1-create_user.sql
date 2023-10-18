@@ -1,4 +1,10 @@
--- Script that creates a user in MySQL server.
--- Query to create the user 'user_0d_1' in MySQL server.
-CREATE USER IF NOT EXISTS 'user_0d_1';
-GRANT ALL PRIVILEGES ON * . * TO 'user_0d_1' IDENTIFIED BY 'user_0d_1_pwd';
+-- Check if the user already exists
+SELECT EXISTS (SELECT 1 FROM mysql.user WHERE user = 'user_0d_1') INTO @user_exists;
+
+-- If the user doesn't exist, create it
+IF @user_exists = 0 THEN
+    CREATE USER 'user_0d_1'@'%' IDENTIFIED BY 'user_0d_1_pwd';
+END IF;
+
+-- Grant all privileges to the user
+GRANT ALL PRIVILEGES ON *.* TO 'user_0d_1'@'%';
